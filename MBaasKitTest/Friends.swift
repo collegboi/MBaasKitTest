@@ -9,13 +9,16 @@
 import Foundation
 import MBaaSKit
 
+
 struct Friends: TBJSONSerializable {
     
+    var objectID: TBObjectID = ""
     var name: String!
     var age: Int!
     var dob: String!
     var country: String!
     var county: String!
+    var deviceID: String = ""
     
     init() {}
     
@@ -29,6 +32,7 @@ struct Friends: TBJSONSerializable {
     
     init(jsonObject: TBJSON) {
         
+        self.objectID = jsonObject.tryConvert(forKey: "_id")
         self.name = jsonObject.tryConvert(forKey: "name")
         self.age = jsonObject.tryConvert(forKey: "age")
         self.dob = jsonObject.tryConvert(forKey: "dob")

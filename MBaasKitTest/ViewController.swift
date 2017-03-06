@@ -17,10 +17,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var tfCountry: UITextField!
     @IBOutlet weak var tfCounty: UITextField!
     @IBOutlet weak var sendFriend: UIButton!
+    @IBOutlet weak var sendAlert: UIButton!
+    
+    var friend: Friends?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sendFriend.isEnabled = false
+        self.sendAlert.isEnabled = false
         self.tfName.delegate = self
         self.tfAge.delegate = self
         self.tfDOB.delegate = self
@@ -30,17 +34,33 @@ class ViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if friend != nil {
+            self.sendAlert.isEnabled = true
+            self.tfName.text = friend?.name
+            self.tfAge.text = "\(friend?.age ?? 0)"
+            self.tfDOB.text = friend?.dob
+            self.tfCountry.text  = friend?.country
+            self.tfCounty.text = friend?.county
+        }
+    }
+    @IBAction func sendAlert(_ sender: Any) {
+        self.sendNotification((self.friend?.deviceID)!)
+    }
+    
     @IBAction func sendFriend(_ sender: Any) {
         
-        let newFriend = Friends(name: self.tfName.text!,
+        var newFriend = Friends(name: self.tfName.text!,
                                 age: Int(self.tfAge.text!)!,
                                 dob: self.tfDOB.text!,
                                 country: self.tfCountry.text!,
                                 county: self.tfCounty.text!)
+        newFriend.deviceID = UserDefaults.standard.string(forKey: "deviceToken") ?? ""
         
-        newFriend.sendInBackground("") { (sent, data) in
+        newFriend.sendInBackground( self.friend?.objectID ?? "" ) { (sent, data) in
             DispatchQueue.main.async {
                 if sent {
                     print("sent")
@@ -51,6 +71,26 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController {
+    
+    
+    
+    func sendNotification(_ userID: String ) {
+        
+        let newNotification = TBNotification()
+        newNotification.setTitle("test")
+        newNotification.setUserID(userID)
+        newNotification.setMessage("hello")
+        newNotification.sendNotification { (sent, message) in
+            DispatchQueue.main.async {
+                if sent {
+                    print("notification sent")
+                }
+            }
+        }
+    }
+    
+}
 
 extension ViewController: UITextFieldDelegate {
     

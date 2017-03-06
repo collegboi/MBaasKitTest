@@ -52,10 +52,13 @@
                     <navigationItem key="navigationItem" id="bgU-rv-0uT">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Cea-mo-sTO">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="V3t-uO-7Uy"/>
+                                <action selector="addNewFriend:" destination="1cc-Td-WtA" id="xvg-iA-78y"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="editFriend" id="pV8-iw-iQB"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l7h-n7-ffZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -122,17 +125,32 @@
                                     <action selector="sendFriend:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CLg-85-uUA"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTF-Zi-Eaw">
+                                <rect key="frame" x="16" y="358" width="102" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="102" id="Mhp-nN-0eV"/>
+                                    <constraint firstAttribute="height" constant="30" id="NHC-LF-cRf"/>
+                                </constraints>
+                                <state key="normal" title="Send Alert"/>
+                                <connections>
+                                    <action selector="sendAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rfp-70-ZEE"/>
+                                    <action selector="sendFriend:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fBo-OE-JRa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2ph-40-Ty8" firstAttribute="top" secondItem="Bgt-Y6-1SI" secondAttribute="bottom" constant="20" id="CYz-0l-mkK"/>
                             <constraint firstItem="Bgt-Y6-1SI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="OA6-Vz-ZU6"/>
                             <constraint firstItem="Bgt-Y6-1SI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="eTd-9y-gsA"/>
+                            <constraint firstItem="NTF-Zi-Eaw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="mG2-c9-SGR"/>
                             <constraint firstItem="Bgt-Y6-1SI" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="oK8-6V-wJJ"/>
                             <constraint firstItem="2ph-40-Ty8" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="rLT-9c-T1S"/>
+                            <constraint firstItem="NTF-Zi-Eaw" firstAttribute="top" secondItem="Bgt-Y6-1SI" secondAttribute="bottom" constant="20" id="v44-As-mui"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="sendAlert" destination="NTF-Zi-Eaw" id="bUS-31-jyg"/>
                         <outlet property="sendFriend" destination="2ph-40-Ty8" id="wmd-sn-dcb"/>
                         <outlet property="tfAge" destination="cDR-J8-YtE" id="bDx-Oc-enZ"/>
                         <outlet property="tfCountry" destination="2d7-ru-Eag" id="66g-ml-GAE"/>

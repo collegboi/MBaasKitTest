@@ -19,6 +19,10 @@ class MainTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         self.getAllFriends()
     }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     func getAllFriends() {
         
@@ -36,10 +40,11 @@ class MainTableViewController: UITableViewController {
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func addNewFriend(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "editFriend", sender: nil)
     }
+    
 
     // MARK: - Table view data source
 
@@ -62,7 +67,13 @@ class MainTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "editFriend", sender: self.allFriends[indexPath.row])
+        self.tableView.deselectRow(at: indexPath, animated: false)
 
+    }
+
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -99,13 +110,20 @@ class MainTableViewController: UITableViewController {
     */
 
     /*
-    // MARK: - Navigation
+     MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+       
+        if segue.identifier == "editFriend" {
+            
+            if let destinationVC = segue.destination as? ViewController {
+                destinationVC.friend = sender as? Friends
+            }
+        }
+
+        
     }
-    */
+    
 
 }

@@ -41,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		119EFD7B3B2E84D61BB37E88 /* Pods-MBaasKitTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MBaasKitTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-MBaasKitTest/Pods-MBaasKitTest.release.xcconfig"; sourceTree = "<group>"; };
+		150A42C81E6CE1CE00D8C476 /* MBaasKitTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MBaasKitTest.entitlements; sourceTree = "<group>"; };
 		15FAA3E91E62FFD400AAB1C6 /* MBaasKitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MBaasKitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15FAA3EC1E62FFD400AAB1C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15FAA3EE1E62FFD400AAB1C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +122,7 @@
 		15FAA3EB1E62FFD400AAB1C6 /* MBaasKitTest */ = {
 			isa = PBXGroup;
 			children = (
+				150A42C81E6CE1CE00D8C476 /* MBaasKitTest.entitlements */,
 				15FAA41F1E63139A00AAB1C6 /* MainTableViewController.swift */,
 				15FAA41C1E63067900AAB1C6 /* Models */,
 				15FAA3EC1E62FFD400AAB1C6 /* AppDelegate.swift */,
@@ -262,6 +264,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 4EU4PGMLU9;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					15FAA3FC1E62FFD400AAB1C6 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -623,6 +630,7 @@
 			baseConfigurationReference = 72EB9B84E1047BE81EAB3C28 /* Pods-MBaasKitTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MBaasKitTest/MBaasKitTest.entitlements;
 				DEVELOPMENT_TEAM = 4EU4PGMLU9;
 				INFOPLIST_FILE = MBaasKitTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -637,6 +645,7 @@
 			baseConfigurationReference = 119EFD7B3B2E84D61BB37E88 /* Pods-MBaasKitTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MBaasKitTest/MBaasKitTest.entitlements;
 				DEVELOPMENT_TEAM = 4EU4PGMLU9;
 				INFOPLIST_FILE = MBaasKitTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

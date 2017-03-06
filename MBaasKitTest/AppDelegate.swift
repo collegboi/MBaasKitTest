@@ -8,6 +8,7 @@
 
 import UIKit
 import MBaaSKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,8 +17,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         TBAnalyitcs.sendOpenApp(self)
+        
+        MyException.client()
+        MyException.sharedClient?.setupExceptionHandler()
+        
+        self.setupApp()
+        
+        self.registerForPushNotifications(application)
+        
         return true
+    }
+    
+    func setupApp() {
+        let navColor = UIColor(red: 38.0/255, green: 154.0/255, blue: 208.0/255, alpha: 0.5)
+        UINavigationBar.appearance().barTintColor = navColor
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().isTranslucent = true
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName: UIFont(name: "Avenir Next", size: 22)!]
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -41,6 +60,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    //MARK: Notifications
 
+    func registerForPushNotifications(_ application: UIApplication) {
+        
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            if !granted {
+                print("not granted")
+            }
+        }
+        application.registerForRemoteNotifications()
+    }
+
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        print(userInfo)
+        
+        if let aps = userInfo["aps"] as? NSDictionary {
+            let message = aps["alert"]
+            print("my messages : \(message)")
+        }
+    }
+    
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        print(deviceTokenString)
+        
+        UserDefaults.standard.set(deviceTokenString, forKey: "deviceToken")
+        
+        let installation = TBInstallation(deviceToken: deviceToken)
+        installation.sendInBackground("") { ( completed, data) in
+            DispatchQueue.main.async {
+                if (completed) {
+                    print("success")
+                } else {
+                    print("error")
+                }
+            }
+            
+        }
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register:", error)
+    }
+
+    
 }
 

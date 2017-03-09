@@ -9,20 +9,33 @@
 import UIKit
 import MBaaSKit
 
-class ViewController: UIViewController {
+class ViewController: RCViewControllers {
 
-    @IBOutlet weak var tfName: UITextField!
-    @IBOutlet weak var tfAge: UITextField!
-    @IBOutlet weak var tfDOB: UITextField!
-    @IBOutlet weak var tfCountry: UITextField!
-    @IBOutlet weak var tfCounty: UITextField!
-    @IBOutlet weak var sendFriend: UIButton!
-    @IBOutlet weak var sendAlert: UIButton!
+    @IBOutlet weak var tfName: RCTextField!
+    @IBOutlet weak var tfAge: RCTextField!
+    @IBOutlet weak var tfDOB: RCTextField!
+    @IBOutlet weak var tfCountry: RCTextField!
+    @IBOutlet weak var tfCounty: RCTextField!
+    @IBOutlet weak var sendFriend: RCButton!
+    @IBOutlet weak var sendAlert: RCButton!
     
     var friend: Friends?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setupViewController(className: self)
+        
+        
+        self.tfName.setupLabelView(className: self, name: "tfName")
+        self.tfAge.setupLabelView(className: self, name: "tfAge")
+        self.tfDOB.setupLabelView(className: self, name: "tfDOB")
+        self.tfCountry.setupLabelView(className: self, name: "tfCountry")
+        self.tfCounty.setupLabelView(className: self, name: "tfCounty")
+        self.sendFriend.setupButton(className: self, "sendFriend")
+        self.sendAlert.setupButton(className: self, "sendAlert")
+        
+        
         self.sendFriend.isEnabled = false
         self.sendAlert.isEnabled = false
         self.tfName.delegate = self

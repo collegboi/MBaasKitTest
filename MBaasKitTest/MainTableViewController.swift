@@ -12,7 +12,6 @@ import MBaaSKit
 class MainTableViewController: RCTableViewController {
 
     var allFriends = [Friends]()
-    var themeList : [String] = ["Dark", "Light"]
     
     override func viewWillAppear(_ animated: Bool) {
         //self.getConfigVersion()
@@ -176,7 +175,7 @@ extension MainTableViewController {
         TBAnalytics.send(self)
         let alertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
         
-        for (_, theme ) in self.themeList.enumerated() {
+        for (_, theme ) in RCConfigManager.getThemesList().enumerated() {
             
             let langAction = UIAlertAction(title: theme, style: .default, handler: { (action) -> Void in
                 self.getDiffLanguage(theme: theme)

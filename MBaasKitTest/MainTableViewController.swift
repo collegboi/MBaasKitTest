@@ -25,7 +25,6 @@ class MainTableViewController: RCTableViewController {
         self.tableView.deselectRow(at: indexPath, animated: false)
         self.tableView.tableFooterView = UIView()
         self.setupTableViewController(className: self)
-        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -166,8 +165,15 @@ class MainTableViewController: RCTableViewController {
 
 extension MainTableViewController {
     
+    func updateViews() {
+        RCConfigManager.updateConfigFileNames(fileType: .config)
+        RCConfigManager.updateNavigationBar(className: self,objectName: "navBar");
+        self.tableView.reloadData()
+        self.setupTableViewController(className: self)
+    }
+    
     func addAlertSheet( ) {
-        TBAnalyitcs.send(self)
+        TBAnalytics.send(self)
         let alertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
         
         for (_, theme ) in self.themeList.enumerated() {
@@ -199,6 +205,7 @@ extension MainTableViewController {
             DispatchQueue.main.async {
                 if complete {
                     print(theme)
+                    self.updateViews()
                     self.showMessage(title: "Theme", message: theme + " successfully downloaded")
                 }
             }

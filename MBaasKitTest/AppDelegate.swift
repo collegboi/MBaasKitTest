@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        TBAnalyitcs.sendOpenApp(self)
+        TBAnalytics.sendOpenApp(self)
         
         MyException.client()
         MyException.sharedClient?.setupExceptionHandler()
@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupApp() {
         
-        RCConfigManager.checkIfFilesExist();
+        RCConfigManager.updateNavigationBar(className: self,objectName: "navBar")
         
 //        //let navColor = UIColor(red: 38.0/255, green: 154.0/255, blue: 208.0/255, alpha: 0.5)
 //        UIApplication.shared.statusBarStyle = .lightContent
@@ -49,11 +49,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        TBAnalyitcs.sendCloseApp(self)
+        TBAnalytics.sendCloseApp(self)
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        TBAnalyitcs.sendOpenApp(self)
+        TBAnalytics.sendOpenApp(self)
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

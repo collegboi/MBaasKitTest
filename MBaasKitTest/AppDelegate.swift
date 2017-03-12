@@ -31,13 +31,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setupApp() {
-        //let navColor = UIColor(red: 38.0/255, green: 154.0/255, blue: 208.0/255, alpha: 0.5)
-        UIApplication.shared.statusBarStyle = .lightContent
-        UINavigationBar.appearance().barTintColor = RCConfigManager.getColor(name: "navBarColor")
-        UINavigationBar.appearance().tintColor = RCConfigManager.getColor(name: "white")
-        UINavigationBar.appearance().isTranslucent = true
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName: UIFont(name: "Avenir Next", size: 22)!]
-        UIApplication.shared.applicationIconBadgeNumber = 0
+        
+        RCConfigManager.checkIfFilesExist();
+        
+//        //let navColor = UIColor(red: 38.0/255, green: 154.0/255, blue: 208.0/255, alpha: 0.5)
+//        UIApplication.shared.statusBarStyle = .lightContent
+//        UINavigationBar.appearance().barTintColor = RCConfigManager.getColor(name: "navBarColor")
+//        UINavigationBar.appearance().tintColor = RCConfigManager.getColor(name: "white")
+//        UINavigationBar.appearance().isTranslucent = true
+//        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName: UIFont(name: "Avenir Next", size: 22)!]
+//        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

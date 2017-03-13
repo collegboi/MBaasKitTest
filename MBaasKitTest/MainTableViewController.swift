@@ -16,10 +16,12 @@ class MainTableViewController: RCTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         //self.getConfigVersion()
         self.getAllFriends()
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.getDiffLanguage(theme: "Light")
         let indexPath = IndexPath(item: 0, section: 0)
         self.tableView.deselectRow(at: indexPath, animated: false)
         self.tableView.tableFooterView = UIView()

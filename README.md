@@ -57,6 +57,16 @@ testObject.sendInBackground("objectID"){ (succeeded: Bool, data: NSData) -> () i
 
 ```
 
+## Screenshots
+
+Image 1
+![alt tag](https://github.com/collegboi/MBaasKitTest/blob/master/image1.PNG)
+
+Image 2
+![alt tag](https://github.com/collegboi/MBaasKitTest/blob/master/image2.PNG)
+
+Image 3
+![alt tag](https://github.com/collegboi/MBaasKitTest/blob/master/image3.PNG)
 
 ## Author
 

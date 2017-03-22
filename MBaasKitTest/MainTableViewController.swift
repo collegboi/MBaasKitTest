@@ -9,6 +9,11 @@
 import UIKit
 import MBaaSKit
 
+enum DownloadType {
+    case Config
+    case Language
+}
+
 class MainTableViewController: RCTableViewController {
 
     var allFriends = [Friends]()
@@ -21,7 +26,8 @@ class MainTableViewController: RCTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.getDiffLanguage(theme: "Light")
+        
+        self.navigationItem.title = RCConfigManager.getTranslation(name: "title")
         let indexPath = IndexPath(item: 0, section: 0)
         self.tableView.deselectRow(at: indexPath, animated: false)
         self.tableView.tableFooterView = UIView()
@@ -160,15 +166,13 @@ class MainTableViewController: RCTableViewController {
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
     }
-
-    
 }
 
 extension MainTableViewController {
     
     func updateViews() {
-        RCConfigManager.updateConfigFileNames(fileType: .config)
         RCConfigManager.updateNavigationBar(className: self,objectName: "navBar");
+        self.navigationItem.title = RCConfigManager.getTranslation(name: "title")
         self.tableView.reloadData()
         self.setupTableViewController(className: self)
     }
@@ -177,13 +181,27 @@ extension MainTableViewController {
         TBAnalytics.send(self)
         let alertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
         
-        for (_, theme ) in RCConfigManager.getThemesList().enumerated() {
+        for (_, language ) in RCConfigManager.getLangugeList().enumerated() {
             
-            let langAction = UIAlertAction(title: theme, style: .default, handler: { (action) -> Void in
-                self.getDiffLanguage(theme: theme)
+            let langAction = UIAlertAction(title: language, style: .default, handler: { (action) -> Void in
+                self.getNewVersion(value: language, type: .Language)
             })
             
             alertController.addAction(langAction)
+        }
+        
+        let blankAction = UIAlertAction(title: "", style: .default, handler: { (action) -> Void in
+        })
+        
+        alertController.addAction(blankAction)
+        
+        for (_, theme ) in RCConfigManager.getThemesList().enumerated() {
+            
+            let configAction = UIAlertAction(title: theme, style: .default, handler: { (action) -> Void in
+                self.getNewVersion(value: theme, type: .Config)
+            })
+            
+            alertController.addAction(configAction)
         }
         
         let buttonCancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
@@ -199,13 +217,35 @@ extension MainTableViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func getDiffLanguage( theme: String ) {
+    func getNewVersion( value: String, type: DownloadType ) {
+    
+        if type == .Config {
+            self.getDiffConfig(theme: value)
+        } else {
+            self.getDiffLanguage(name: value)
+        }
+    }
+    
+    func getDiffLanguage(name: String) {
+        
+        RCConfigManager.getConfigLanguageVersion(name: name) { (complete, message) in
+            if complete {
+                print(name)
+                RCConfigManager.updateConfigFileNames(fileType: .language)
+                self.updateViews()
+                self.showMessage(title: "Language", message: name + " successfully downloaded")
+            }
+        }
+    }
+    
+    func getDiffConfig( theme: String ) {
         
         //if RCNetwork.isInternetAvailable() {
         RCConfigManager.getConfigThemeVersion(theme: theme) { ( complete, message) in
             DispatchQueue.main.async {
                 if complete {
                     print(theme)
+                    RCConfigManager.updateConfigFileNames(fileType: .config)
                     self.updateViews()
                     self.showMessage(title: "Theme", message: theme + " successfully downloaded")
                 }

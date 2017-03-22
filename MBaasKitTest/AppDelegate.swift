@@ -18,11 +18,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        if RCConfigManager.checkIfFilesExist() {
+        if !RCConfigManager.checkIfFilesExist() {
             RCConfigManager.getConfigVersion(getCompleted: { (completed, message) in
                 DispatchQueue.main.async {
                     if completed {
                         print("config file downloaded")
+                        RCConfigManager.updateConfigFileNames(fileType: .config)
+                    }
+                }
+            })
+            
+            RCConfigManager.getConfigLanguageVersion(name: "English", getCompleted: { (completed, message) in
+                DispatchQueue.main.async {
+                    if completed {
+                        print("language file downloaded")
+                        RCConfigManager.updateConfigFileNames(fileType: .language)
                     }
                 }
             })

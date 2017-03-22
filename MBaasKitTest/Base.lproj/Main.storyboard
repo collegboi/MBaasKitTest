@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main Table View Controller-->
+        <!--Title-->
         <scene sceneID="6dn-Fk-ISm">
             <objects>
                 <tableViewController id="1cc-Td-WtA" customClass="MainTableViewController" customModule="MBaasKitTest" customModuleProvider="target" sceneMemberID="viewController">
@@ -49,7 +49,7 @@
                             <outlet property="delegate" destination="1cc-Td-WtA" id="iRN-8a-WoD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="bgU-rv-0uT">
+                    <navigationItem key="navigationItem" title="Title" id="bgU-rv-0uT">
                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="Y7V-gt-QFY">
                             <connections>
                                 <action selector="updateConfigFile:" destination="1cc-Td-WtA" id="W32-mD-g6O"/>

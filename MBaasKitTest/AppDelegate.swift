@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        if !RCConfigManager.checkIfFilesExist() {
+        if !RCConfigManager.checkIfConfigExist() {
             RCConfigManager.getConfigVersion(getCompleted: { (completed, message) in
                 DispatchQueue.main.async {
                     if completed {
@@ -27,6 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
             })
+        }
+        
+        if !RCConfigManager.checkIfLanguageExist() {
             
             RCConfigManager.getConfigLanguageVersion(name: "English", getCompleted: { (completed, message) in
                 DispatchQueue.main.async {

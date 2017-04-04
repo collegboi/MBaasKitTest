@@ -172,7 +172,7 @@ extension MainTableViewController {
     
     func updateViews() {
         RCConfigManager.updateNavigationBar(className: self,objectName: "navBar");
-        self.navigationItem.title = RCConfigManager.getTranslation(name: "title")
+        self.title = RCConfigManager.getTranslation(name: "title")
         self.tableView.reloadData()
         self.setupTableViewController(className: self)
     }

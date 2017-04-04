@@ -100,12 +100,12 @@
 		15FAA3E01E62FFD400AAB1C6 = {
 			isa = PBXGroup;
 			children = (
+				44CF9CFA17A108968A7CCC52 /* Frameworks */,
 				15FAA3EB1E62FFD400AAB1C6 /* MBaasKitTest */,
 				15FAA4001E62FFD400AAB1C6 /* MBaasKitTestTests */,
 				15FAA40B1E62FFD400AAB1C6 /* MBaasKitTestUITests */,
-				15FAA3EA1E62FFD400AAB1C6 /* Products */,
 				F4E310C4DD1227E3221429EE /* Pods */,
-				44CF9CFA17A108968A7CCC52 /* Frameworks */,
+				15FAA3EA1E62FFD400AAB1C6 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,15 +122,15 @@
 		15FAA3EB1E62FFD400AAB1C6 /* MBaasKitTest */ = {
 			isa = PBXGroup;
 			children = (
-				150A42C81E6CE1CE00D8C476 /* MBaasKitTest.entitlements */,
-				15FAA41F1E63139A00AAB1C6 /* MainTableViewController.swift */,
 				15FAA41C1E63067900AAB1C6 /* Models */,
 				15FAA3EC1E62FFD400AAB1C6 /* AppDelegate.swift */,
-				15FAA3EE1E62FFD400AAB1C6 /* ViewController.swift */,
-				15FAA3F01E62FFD400AAB1C6 /* Main.storyboard */,
 				15FAA3F31E62FFD400AAB1C6 /* Assets.xcassets */,
-				15FAA3F51E62FFD400AAB1C6 /* LaunchScreen.storyboard */,
 				15FAA3F81E62FFD400AAB1C6 /* Info.plist */,
+				15FAA3F51E62FFD400AAB1C6 /* LaunchScreen.storyboard */,
+				150A42C81E6CE1CE00D8C476 /* MBaasKitTest.entitlements */,
+				15FAA3F01E62FFD400AAB1C6 /* Main.storyboard */,
+				15FAA41F1E63139A00AAB1C6 /* MainTableViewController.swift */,
+				15FAA3EE1E62FFD400AAB1C6 /* ViewController.swift */,
 			);
 			path = MBaasKitTest;
 			sourceTree = "<group>";
@@ -138,8 +138,8 @@
 		15FAA4001E62FFD400AAB1C6 /* MBaasKitTestTests */ = {
 			isa = PBXGroup;
 			children = (
-				15FAA4011E62FFD400AAB1C6 /* MBaasKitTestTests.swift */,
 				15FAA4031E62FFD400AAB1C6 /* Info.plist */,
+				15FAA4011E62FFD400AAB1C6 /* MBaasKitTestTests.swift */,
 			);
 			path = MBaasKitTestTests;
 			sourceTree = "<group>";
@@ -147,8 +147,8 @@
 		15FAA40B1E62FFD400AAB1C6 /* MBaasKitTestUITests */ = {
 			isa = PBXGroup;
 			children = (
-				15FAA40C1E62FFD400AAB1C6 /* MBaasKitTestUITests.swift */,
 				15FAA40E1E62FFD400AAB1C6 /* Info.plist */,
+				15FAA40C1E62FFD400AAB1C6 /* MBaasKitTestUITests.swift */,
 			);
 			path = MBaasKitTestUITests;
 			sourceTree = "<group>";
@@ -159,6 +159,7 @@
 				15FAA41D1E63068B00AAB1C6 /* Friends.swift */,
 			);
 			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		44CF9CFA17A108968A7CCC52 /* Frameworks */ = {
@@ -519,6 +520,7 @@
 				15FAA3F11E62FFD400AAB1C6 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		15FAA3F51E62FFD400AAB1C6 /* LaunchScreen.storyboard */ = {
@@ -527,6 +529,7 @@
 				15FAA3F61E62FFD400AAB1C6 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
